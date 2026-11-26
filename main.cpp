@@ -36,3 +36,33 @@ void loading() {
     }
     napms(300);
 }
+// ================== BAGIAN 2: MENU PLAY DAN EXIT ==================
+int menu() {
+    int k = 0;
+    while (k != '1' && k != '2') {
+        erase(); garis(2, 5, "GAME  SUSUN  KATA", 0);
+        mvprintw(6, 8, "[1]  Play");
+        mvprintw(7, 8, "[2]  Exit Game");
+        mvprintw(9, 5, "Waktu per kata : %d detik", WAKTU);
+        mvprintw(10, 5, "Nyawa          : %d", NYAWA);
+        mvprintw(12, 5, "Pilih menu (1/2): "); refresh();
+        k = getch();
+    }
+    return k - '0';
+}
+
+// ================== PROGRAM UTAMA ==================
+int main() {
+    initscr(); cbreak(); noecho(); keypad(stdscr, TRUE); curs_set(0);
+    loading();
+    while (menu() == 1) {
+        erase();
+        mvprintw(5, 5, "Bagian permainan sedang dikembangkan...");
+        mvprintw(7, 5, "Tekan ENTER untuk kembali ke menu");
+        refresh();
+        while (getch() != '\n');
+    }
+    erase(); mvprintw(2, 2, "Terima kasih sudah bermain! Sampai jumpa."); refresh(); napms(1200);
+    endwin();
+    return 0;
+}
